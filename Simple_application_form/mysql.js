@@ -6,9 +6,9 @@ var server = http.createServer(function (req, res) {
     console.log("request from client received.....");
     console.log("processing the request parameters...");
     const MyURL = new URL(req.url, "http://localhost:8080");
-    var name = MyURL.searchParams.get("Name");
-    var age = MyURL.searchParams.get("Age");
-    var address = MyURL.searchParams.get("Address");
+    var name = MyURL.searchParams.get("name");
+    var age = MyURL.searchParams.get("age");
+    var address = MyURL.searchParams.get("address");
   
     console.log("Name = " + name);
     console.log("Age = " + age);
@@ -31,10 +31,10 @@ var server = http.createServer(function (req, res) {
       } 
       else{
         console.log("connected successfully");
-        var query = "INSERT INTO students(name , age,address) VALUES(?,?,?)";
-        var values =[Name,Age,Address];
+        var query = "INSERT INTO students(Name , Age, Address) VALUES(?,?,?)";
+        var values =[name,age,address];
         con.query(query,values,function(error,result){
-            if(err){
+            if(error){
                 console.log("erroe in query");
                 res.write("Internal error occurred");
                 res.end();
